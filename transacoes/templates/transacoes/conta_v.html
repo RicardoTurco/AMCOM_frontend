@@ -1,0 +1,77 @@
+{% extends 'transacoes/base.html' %}
+
+{% block title %}..: Conta - Detalhes :..{% endblock %}
+
+{% block content %}
+
+    <br>
+    <h1 align="center">DETALHES DA CONTA</h1>
+    <br><br>
+
+    <form id="detalhes_conta" method="POST" action="#">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="tipoconta">Tipo Conta</label>
+            <input type="text" name="tipoconta" readonly class="form-control-plaintext" value="{{ conta.tipoconta }}">
+        </div>
+
+        <div class="form-group">
+            <label for="nome">Cliente</label>
+            <input type="text" name="nome" readonly class="form-control-plaintext" value="{{ conta.nome }}" size=100>
+        </div>
+
+        <div class="form-group">
+            <label for="saldo">Saldo</label>
+            <input type="text" name="saldo" readonly class="form-control-plaintext" value="{{ conta.saldo }}" size=20>
+        </div>
+
+        <div class="form-group">
+            <label for="limitesaquediario">Limite Saque Diário</label>
+            <input type="text" name="limitesaquediario" readonly class="form-control-plaintext" value="{{ conta.limitesaquediario }}" size=20>
+        </div>
+
+        <div class="form-group">
+            <label for="datacriacao">Dt. abertura da conta</label>
+            <input type="text" name="datacriacao" readonly class="form-control-plaintext" value="{{ conta.datacriacao }}" size=15>
+        </div>
+
+        <div class="form-group">
+            <label for="flagativo">Ativa / Inativa</label>
+            <input type="text" name="flagativo" readonly class="form-control-plaintext" value="{{ conta.flagativo }}" size=5>
+        </div>
+
+        <br>
+        <div class="form-group">
+            <a class="btn btn-primary" href="{% url 'contas' %}"><< Return to CONTAS</a>
+            <a class="btn btn-danger" href="{% url 'transacao_new' conta.idconta %}">Nova Transação</a>
+        <div>
+        <br>
+
+        <h3 align="center">..: Movimentação da Conta :..</h3>
+        <hr>
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Data</th><th>Tipo Transação</th><th>Valor</th><th>C / D</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for transaco in transacoes %}
+                <tr>
+                    <td>{{ transaco.datatransacao }}</td>
+                    <td>{{ transaco.tipotransacao }}</td>
+                    <td>{{ transaco.valor }}</td>
+                    <td>{{ transaco.operacao }}</td>
+                    <td>
+                        <a class="btn btn-danger" href="#">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+
+{% endblock %}
