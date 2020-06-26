@@ -15,7 +15,7 @@ def contas(request):
     url_api = os.getenv('URL_API') + 'contas'
     response = requests.get(url_api)
     contas = response.json()
-    return render(request, 'transacoes/contas.html', {'contas': contas})
+    return render(request, 'transacoes/contas.html', {'contas': contas, 'status_contas': response.status_code})
 
 
 def conta_v(request, idconta=None):
@@ -27,7 +27,7 @@ def conta_v(request, idconta=None):
 
     conta = response_conta.json()
     transacoes = response_transacoes_conta.json()
-    return render(request, 'transacoes/conta_v.html', {'conta': conta, 'transacoes': transacoes})
+    return render(request, 'transacoes/conta_v.html', {'conta': conta, 'transacoes': transacoes, 'status_transacoes': response_transacoes_conta.status_code})
 
 
 def transacao_new(request, idconta=None):
@@ -73,3 +73,12 @@ def ativar_conta(request, idconta=None):
 
     response = requests.put(url_conta)
     return redirect('conta_v', idconta)
+
+
+def deletar_conta(request, idconta=None):
+    url_transacoes_conta = os.getenv('URL_API') + 'transacoes/conta/' + idconta
+    url_conta = os.getenv('URL_API') + 'contas/id/' + idconta
+
+    response_transacoes = requests.delete(url_transacoes_conta)
+    response_conta = requests.delete(url_conta)
+    return redirect('contas')

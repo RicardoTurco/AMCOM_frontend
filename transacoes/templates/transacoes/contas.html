@@ -9,28 +9,30 @@
 
         <br><br>
 
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th>Tipo Conta</th><th>Cliente</th><th>Ativa / Inativa</th>
-                </tr>
-            </thead>
-
-
-            <tbody>
-                {% for conta in contas %}
+        {% if status_contas == 200 %}
+            <table class="table table-dark">
+                <thead>
                     <tr>
-                        <td>{{ conta.tipoconta }}</td>
-                        <td>{{ conta.nome }}</td>
-                        <td>{{ conta.flagativo }}</td>
-                        <td>
-                            <a class="btn btn-info" href="{% url 'conta_v' conta.idconta %}">Detalhes</a>
-                            <a class="btn btn-danger" href="#">Delete</a>
-                        </td>
+                        <th>Tipo Conta</th><th>Cliente</th><th>Ativa / Inativa</th>
                     </tr>
-                {% endfor %}
-            </tbody>
+                </thead>
 
-        </table>
+
+                <tbody>
+                    {% for conta in contas %}
+                        <tr>
+                            <td>{{ conta.tipoconta }}</td>
+                            <td>{{ conta.nome }}</td>
+                            <td>{{ conta.flagativo }}</td>
+                            <td>
+                                <a class="btn btn-info" href="{% url 'conta_v' conta.idconta %}">Detalhes</a>
+                                <a class="btn btn-danger" href="{% url 'deletar_conta' conta.idconta %}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        {% endif %}
 
 {% endblock %}
