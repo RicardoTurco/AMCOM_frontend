@@ -40,12 +40,21 @@
         <div class="form-group">
             <label for="flagativo">Ativa / Inativa</label>
             <input type="text" name="flagativo" readonly class="form-control-plaintext" value="{{ conta.flagativo }}" size=5>
+
+            {% if conta.flagativo %}
+                <a class="btn btn-danger" href="{% url 'inativar_conta' conta.idconta %}">Inativar CONTA</a>
+            {% else %}
+                <a class="btn btn-primary" href="{% url 'ativar_conta' conta.idconta %}">Ativar CONTA</a>
+            {% endif %}
         </div>
 
         <br>
         <div class="form-group">
             <a class="btn btn-primary" href="{% url 'contas' %}"><< Return to CONTAS</a>
-            <a class="btn btn-danger" href="{% url 'transacao_new' conta.idconta %}">Nova Transação</a>
+
+            {% if conta.flagativo %}
+                <a class="btn btn-danger" href="{% url 'transacao_new' conta.idconta %}">Nova Transação</a>
+            {% endif %}
         <div>
         <br>
 
@@ -62,15 +71,17 @@
 
                 <tbody>
                     {% for transacao in transacoes %}
-                    <tr>
-                        <td>{{ transacao.datatransacao }}</td>
-                        <td>{{ transacao.tipotransacao }}</td>
-                        <td>{{ transacao.valor }}</td>
-                        <td>{{ transacao.operacao }}</td>
-                        <td>
-                            <a class="btn btn-danger" href="{% url 'delete_transacao' conta.idconta transacao.idtransacao %}">Delete</a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ transacao.datatransacao }}</td>
+                            <td>{{ transacao.tipotransacao }}</td>
+                            <td>{{ transacao.valor }}</td>
+                            <td>{{ transacao.operacao }}</td>
+                            <td>
+                                {% if conta.flagativo %}
+                                    <a class="btn btn-danger" href="{% url 'delete_transacao' conta.idconta transacao.idtransacao %}">Delete</a>
+                                {% endif %}
+                            </td>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>

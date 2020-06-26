@@ -19,15 +19,15 @@
 
             <tbody>
                 {% for conta in contas %}
-                <tr>
-                    <td>{{ conta.tipoconta }}</td>
-                    <td>{{ conta.nome }}</td>
-                    <td>{{ conta.flagativo }}</td>
-                    <td>
-                        <a class="btn btn-info" href="{% url 'conta_v' conta.idconta %}">Detalhes</a>
-                        <a class="btn btn-danger" href="#">Delete</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{ conta.tipoconta }}</td>
+                        <td>{{ conta.nome }}</td>
+                        <td>{{ conta.flagativo }}</td>
+                        <td>
+                            <a class="btn btn-info" href="{% url 'conta_v' conta.idconta %}">Detalhes</a>
+                            <a class="btn btn-danger" href="#">Delete</a>
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
 

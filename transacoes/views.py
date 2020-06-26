@@ -59,3 +59,17 @@ def delete_transacao(request, idconta=None, idtransacao=None):
 
     response = requests.delete(url_transacao)
     return redirect('conta_v', idconta)
+
+
+def inativar_conta(request, idconta=None):
+    url_conta = os.getenv('URL_API') + 'contas/id/' + idconta + '/inactivate'
+
+    response = requests.put(url_conta)
+    return redirect('conta_v', idconta)
+
+
+def ativar_conta(request, idconta=None):
+    url_conta = os.getenv('URL_API') + 'contas/id/' + idconta + '/activate'
+
+    response = requests.put(url_conta)
+    return redirect('conta_v', idconta)
