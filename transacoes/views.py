@@ -1,6 +1,6 @@
 import os
 import requests
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def index(request):
@@ -40,3 +40,15 @@ def transacao_new(request, idconta=None):
     conta = response_conta.json()
     tp_transacoes = response_tp_transacoes.json()
     return render(request, 'transacoes/transacao.html', {'conta': conta, 'tipo_transacoes': tp_transacoes})
+
+
+def confirm_transacao(request):
+    url_transacao = os.getenv('URL_API') + 'transacoes'
+
+    transacao = {
+        'idconta': request.POST.get('idconta'),
+        'idtipotransacao': request.POST.get('idtipotransacao'),
+        'valor': float(request.POST.get('valor'))
+    }
+    response = requests.post(url_transacao, json=transacao)
+    return redirect('conta_v', request.POST.get('idconta'))

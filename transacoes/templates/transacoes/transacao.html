@@ -9,11 +9,12 @@
 
     <br><br>
 
-    <form id="detalhes_conta" method="POST" action="#">
+    <form id="detalhes_conta" method="POST" action="{% url 'confirm_transacao' %}">
         {% csrf_token %}
 
         <div class="form-group">
             <label for="tipoconta">Tipo Conta</label>
+            <input type="hidden" name="idconta" readonly value="{{ conta.idconta }}">
             <input type="text" name="tipoconta" readonly class="form-control-plaintext" value="{{ conta.tipoconta }}">
         </div>
 
@@ -35,7 +36,7 @@
         <div class="form-group">
             <label for="tipotransacao">Tipo de Transação (D/C)</label>
 
-            <select id="tipo_transacao">
+            <select id="tipo_transacao" name="idtipotransacao">
                 <option value="None"></option>
                 {% for tipo_transacao in tipo_transacoes %}
                   <option value="{{ tipo_transacao.idtipotransacao }}">{{ tipo_transacao.tipotransacao }} - {{ tipo_transacao.operacao }}</option>
@@ -45,14 +46,14 @@
 
         <div class="form-group">
             <label for="valor">Valor</label>
-            <input type="number" pattern="[0-9]*" data-politespace data-grouplength="2" data-delimiter="." placeholder="0.00">
+            <input type="number" name="valor" pattern="[0-9]*" data-politespace data-grouplength="2" data-delimiter="." placeholder="0.00">
         </div>
 
         <br>
 
         <div class="form-group">
             <a class="btn btn-primary" href="{% url 'conta_v' conta.idconta %}"><< Return to Detalhes da CONTA</a>
-            <a class="btn btn-danger" href="#">CONFIRMAR</a>
+            <button type="submit" class="btn btn-danger">CONFIRMAR</button>
         <div>
 
     </form>

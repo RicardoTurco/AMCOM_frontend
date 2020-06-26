@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from transacoes.views import index, login, contas, conta_v, transacao_new
+from transacoes.views import index, login, contas, conta_v, transacao_new, \
+    confirm_transacao
 
 urlpatterns = [
     path('', index, name='index'),
@@ -23,5 +24,6 @@ urlpatterns = [
     path('contas/', contas, name='contas'),
     path('contas-v/<str:idconta>', conta_v, name='conta_v'),
     path('transacao-new/<str:idconta>', transacao_new, name='transacao_new'),
+    path('confirm-transacao/', confirm_transacao, name='confirm_transacao'),
     path('admin/', admin.site.urls),
 ]
