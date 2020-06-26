@@ -52,3 +52,10 @@ def confirm_transacao(request):
     }
     response = requests.post(url_transacao, json=transacao)
     return redirect('conta_v', request.POST.get('idconta'))
+
+
+def delete_transacao(request, idconta=None, idtransacao=None):
+    url_transacao = os.getenv('URL_API') + 'transacoes/id/' + idtransacao
+
+    response = requests.delete(url_transacao)
+    return redirect('conta_v', idconta)
