@@ -1,0 +1,1 @@
+web: gunicorn amcom.wsgi --log-file -
