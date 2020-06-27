@@ -18,6 +18,20 @@ def contas(request):
     return render(request, 'transacoes/contas.html', {'contas': contas, 'status_contas': response.status_code})
 
 
+def inativar_conta(request, idconta=None):
+    url_conta = os.getenv('URL_API') + 'contas/id/' + idconta + '/inactivate'
+
+    response = requests.put(url_conta)
+    return redirect('conta_v', idconta)
+
+
+def ativar_conta(request, idconta=None):
+    url_conta = os.getenv('URL_API') + 'contas/id/' + idconta + '/activate'
+
+    response = requests.put(url_conta)
+    return redirect('conta_v', idconta)
+
+
 def conta_v(request, idconta=None):
     url_conta = os.getenv('URL_API') + 'contas/id/' + idconta
     url_transacoes_conta = os.getenv('URL_API') + 'transacoes/conta/' + idconta
@@ -28,6 +42,15 @@ def conta_v(request, idconta=None):
     conta = response_conta.json()
     transacoes = response_transacoes_conta.json()
     return render(request, 'transacoes/conta_v.html', {'conta': conta, 'transacoes': transacoes, 'status_transacoes': response_transacoes_conta.status_code})
+
+
+def deletar_conta(request, idconta=None):
+    url_transacoes_conta = os.getenv('URL_API') + 'transacoes/conta/' + idconta
+    url_conta = os.getenv('URL_API') + 'contas/id/' + idconta
+
+    response_transacoes = requests.delete(url_transacoes_conta)
+    response_conta = requests.delete(url_conta)
+    return redirect('contas')
 
 
 def transacao_new(request, idconta=None):
@@ -59,26 +82,3 @@ def delete_transacao(request, idconta=None, idtransacao=None):
 
     response = requests.delete(url_transacao)
     return redirect('conta_v', idconta)
-
-
-def inativar_conta(request, idconta=None):
-    url_conta = os.getenv('URL_API') + 'contas/id/' + idconta + '/inactivate'
-
-    response = requests.put(url_conta)
-    return redirect('conta_v', idconta)
-
-
-def ativar_conta(request, idconta=None):
-    url_conta = os.getenv('URL_API') + 'contas/id/' + idconta + '/activate'
-
-    response = requests.put(url_conta)
-    return redirect('conta_v', idconta)
-
-
-def deletar_conta(request, idconta=None):
-    url_transacoes_conta = os.getenv('URL_API') + 'transacoes/conta/' + idconta
-    url_conta = os.getenv('URL_API') + 'contas/id/' + idconta
-
-    response_transacoes = requests.delete(url_transacoes_conta)
-    response_conta = requests.delete(url_conta)
-    return redirect('contas')
