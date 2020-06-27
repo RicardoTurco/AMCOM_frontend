@@ -1,0 +1,22 @@
+{% extends 'transacoes/base.html' %}
+
+{% block title %}..: Nova Conta :..{% endblock %}
+
+{% block content %}
+
+    <br>
+    <h1 align="center">NOVA CONTA</h1>
+    <br><br>
+
+    <form id="nova_conta" method="POST" action="#">
+        {% csrf_token %}
+
+        <br>
+        <div class="form-group">
+            <a class="btn btn-primary" href="{% url 'contas' %}"><< Return to CONTAS</a>
+        <div>
+        <br>
+
+    </form>
+
+{% endblock %}

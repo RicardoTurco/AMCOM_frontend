@@ -30,6 +30,10 @@ def conta_v(request, idconta=None):
     return render(request, 'transacoes/conta_v.html', {'conta': conta, 'transacoes': transacoes, 'status_transacoes': response_transacoes_conta.status_code})
 
 
+def conta_new(request):
+    return render(request, 'transacoes/conta_new.html')
+
+
 def inativar_conta(request, idconta=None):
     url_conta = os.getenv('URL_API') + 'contas/id/' + idconta + '/inactivate'
 
