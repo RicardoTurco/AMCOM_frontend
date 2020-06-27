@@ -42,6 +42,18 @@ def conta_new(request):
     return render(request, 'transacoes/conta_new.html', {'pessoas': pessoas, 'tp_contas': tp_contas})
 
 
+def criar_conta(request):
+    url_criar_conta = os.getenv('URL_API') + 'contas'
+
+    conta = {
+        'idpessoa': request.POST.get('idpessoa'),
+        'limitesaquediario': float(request.POST.get('limitesaquediario')),
+        'idtipoconta': request.POST.get('idtipoconta')
+    }
+    response = requests.post(url_criar_conta, json=conta)
+    return redirect('contas')
+
+
 def inativar_conta(request, idconta=None):
     url_conta = os.getenv('URL_API') + 'contas/id/' + idconta + '/inactivate'
 

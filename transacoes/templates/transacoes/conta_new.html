@@ -8,7 +8,7 @@
     <h1 align="center">NOVA CONTA</h1>
     <br><br>
 
-    <form id="nova_conta" method="POST" action="#">
+    <form id="nova_conta" method="POST" action="{% url 'criar_conta' %}">
         {% csrf_token %}
 
         <div class="form-group">
@@ -41,6 +41,7 @@
         <br><br>
         <div class="form-group">
             <a class="btn btn-primary" href="{% url 'contas' %}"><< Return to CONTAS</a>
+            <button type="submit" class="btn btn-danger">CONFIRMAR</button>
         <div>
         <br>
 
