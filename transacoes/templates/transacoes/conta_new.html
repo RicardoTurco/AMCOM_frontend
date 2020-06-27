@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <label for="limitesaquediario">Limite para saque diário</label>
-            <input type="number" name="limitesaquediario" pattern="[0-9]*" data-politespace data-grouplength="2" data-delimiter="." placeholder="0.00">
+            <input type="text" name="limitesaquediario" onkeyup="maskIt(this,event,'###.###.###,##',true,{pre:'R$'})" />
         </div>
 
         <br><br>

@@ -46,7 +46,7 @@
 
         <div class="form-group">
             <label for="valor">Valor</label>
-            <input type="number" name="valor" pattern="[0-9]*" data-politespace data-grouplength="2" data-delimiter="." placeholder="0.00">
+            <input type="text" name="valor" onkeyup="maskIt(this,event,'###.###.###,##',true,{pre:'R$'})" />
         </div>
 
         <br>
