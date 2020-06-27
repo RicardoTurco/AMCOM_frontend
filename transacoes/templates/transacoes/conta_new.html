@@ -11,7 +11,34 @@
     <form id="nova_conta" method="POST" action="#">
         {% csrf_token %}
 
-        <br>
+        <div class="form-group">
+            <label for="cliente">Cliente</label>
+
+            <select id="pessoa" name="idpessoa">
+                <option value="None"></option>
+                {% for pessoa in pessoas %}
+                  <option value="{{ pessoa.idpessoa }}">{{ pessoa.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="tipoconta">Tipo de Conta</label>
+
+            <select id="tipo_conta" name="idtipoconta">
+                <option value="None"></option>
+                {% for tp_conta in tp_contas %}
+                  <option value="{{ tp_conta.idtipoconta }}">{{ tp_conta.tipoconta }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="limitesaquediario">Limite para saque diário</label>
+            <input type="number" name="limitesaquediario" pattern="[0-9]*" data-politespace data-grouplength="2" data-delimiter="." placeholder="0.00">
+        </div>
+
+        <br><br>
         <div class="form-group">
             <a class="btn btn-primary" href="{% url 'contas' %}"><< Return to CONTAS</a>
         <div>

@@ -31,7 +31,15 @@ def conta_v(request, idconta=None):
 
 
 def conta_new(request):
-    return render(request, 'transacoes/conta_new.html')
+    url_pessoas = os.getenv('URL_API') + 'pessoas'
+    url_tp_contas = os.getenv('URL_API') + 'tipo-contas'
+
+    response_pessoas = requests.get(url_pessoas)
+    response_tp_contas = requests.get(url_tp_contas)
+
+    pessoas = response_pessoas.json()
+    tp_contas = response_tp_contas.json()
+    return render(request, 'transacoes/conta_new.html', {'pessoas': pessoas, 'tp_contas': tp_contas})
 
 
 def inativar_conta(request, idconta=None):
