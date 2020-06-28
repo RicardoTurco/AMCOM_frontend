@@ -112,6 +112,21 @@ def tp_transacoes(request):
     return render(request, 'transacoes/tipo_transacoes.html', {'tp_transacoes': tp_transacoes, 'status_tp_transacoes': response.status_code})
 
 
+def tp_transacao_new(request):
+    return render(request, 'transacoes/tipo_transacao_new.html')
+
+
+def criar_tp_transacao(request):
+    url_criar_tp_transacao = os.getenv('URL_API') + 'tipo-transacoes'
+
+    tipo_transacao = {
+        'tipotransacao': request.POST.get('tipotransacao'),
+        'operacao': request.POST.get('operacao')
+    }
+    response = requests.post(url_criar_tp_transacao, json=tipo_transacao)
+    return redirect('tipo_transacoes')
+
+
 def transacao_new(request, idconta=None):
     url_conta = os.getenv('URL_API') + 'contas/id/' + idconta
     url_tp_transacoes = os.getenv('URL_API') + 'tipo-transacoes'
