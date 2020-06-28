@@ -25,7 +25,7 @@
                     <tr>
                         <td>{{ tp_conta.tipoconta }}</td>
                         <td>
-                            <a class="btn btn-danger" href="#">Delete</a>
+                            <a class="btn btn-danger" href="{% url 'deletar_tp_conta' tp_conta.idtipoconta %}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}

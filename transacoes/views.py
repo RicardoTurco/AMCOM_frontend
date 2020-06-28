@@ -18,6 +18,13 @@ def tp_contas(request):
     return render(request, 'transacoes/tipo_contas.html', {'tp_contas': tp_contas, 'status_tp_contas': response.status_code})
 
 
+def deletar_tp_conta(request, idtipoconta=None):
+    url_tp_conta = os.getenv('URL_API') + 'tipo-contas/id/' + idtipoconta
+
+    response_tp_conta = requests.delete(url_tp_conta)
+    return redirect('tipo_contas')
+
+
 def contas(request):
     url_api = os.getenv('URL_API') + 'contas'
     response = requests.get(url_api)
