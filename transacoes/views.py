@@ -127,6 +127,13 @@ def criar_tp_transacao(request):
     return redirect('tipo_transacoes')
 
 
+def deletar_tp_transacao(request, idtipotransacao=None):
+    url_tp_transacao = os.getenv('URL_API') + 'tipo-transacoes/id/' + idtipotransacao
+
+    response_tp_transacao = requests.delete(url_tp_transacao)
+    return redirect('tipo_transacoes')
+
+
 def transacao_new(request, idconta=None):
     url_conta = os.getenv('URL_API') + 'contas/id/' + idconta
     url_tp_transacoes = os.getenv('URL_API') + 'tipo-transacoes'

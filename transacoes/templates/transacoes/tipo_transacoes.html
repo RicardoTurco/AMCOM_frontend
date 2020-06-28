@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ tp_transacao.tipotransacao }}</td>
                         <td>
-                            <a class="btn btn-danger" href="#">Delete</a>
+                            <a class="btn btn-danger" href="{% url 'deletar_tp_transacao' tp_transacao.idtipotransacao %}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}
