@@ -11,6 +11,13 @@ def login(request):
     return render(request, 'transacoes/login.html')
 
 
+def tp_contas(request):
+    url_tp_contas = os.getenv('URL_API') + 'tipo-contas'
+    response = requests.get(url_tp_contas)
+    tp_contas = response.json()
+    return render(request, 'transacoes/tipo_contas.html', {'tp_contas': tp_contas, 'status_tp_contas': response.status_code})
+
+
 def contas(request):
     url_api = os.getenv('URL_API') + 'contas'
     response = requests.get(url_api)

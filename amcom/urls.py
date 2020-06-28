@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from transacoes.views import index, login, contas, conta_v, transacao_new, \
+from transacoes.views import index, login, tp_contas, contas, conta_v, transacao_new, \
     confirm_transacao, delete_transacao, inativar_conta, ativar_conta, deletar_conta, \
     conta_new, criar_conta
 
@@ -23,6 +23,7 @@ from transacoes.views import index, login, contas, conta_v, transacao_new, \
 urlpatterns = [
     path('', index, name='index'),
     path('login/', login, name='login'),
+    path('tipo-contas/', tp_contas, name='tipo_contas'),
     path('contas/', contas, name='contas'),
     path('contas-v/<str:idconta>', conta_v, name='conta_v'),
     path('conta-new/', conta_new, name='conta_new'),
