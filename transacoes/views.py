@@ -105,6 +105,13 @@ def deletar_conta(request, idconta=None):
     return redirect('contas')
 
 
+def tp_transacoes(request):
+    url_tp_transacoes = os.getenv('URL_API') + 'tipo-transacoes'
+    response = requests.get(url_tp_transacoes)
+    tp_transacoes = response.json()
+    return render(request, 'transacoes/tipo_transacoes.html', {'tp_transacoes': tp_transacoes, 'status_tp_transacoes': response.status_code})
+
+
 def transacao_new(request, idconta=None):
     url_conta = os.getenv('URL_API') + 'contas/id/' + idconta
     url_tp_transacoes = os.getenv('URL_API') + 'tipo-transacoes'
