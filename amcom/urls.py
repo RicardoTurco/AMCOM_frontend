@@ -15,15 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from transacoes.views import index, login, tp_contas, deletar_tp_conta, contas, conta_v, \
-    transacao_new, confirm_transacao, delete_transacao, inativar_conta, ativar_conta, \
-    deletar_conta, conta_new, criar_conta
+from transacoes.views import index, login, tp_contas, tp_conta_new, criar_tp_conta, \
+    deletar_tp_conta, contas, conta_v, transacao_new, confirm_transacao, \
+    delete_transacao, inativar_conta, ativar_conta, deletar_conta, conta_new, \
+    criar_conta
 
 
 urlpatterns = [
     path('', index, name='index'),
     path('login/', login, name='login'),
     path('tipo-contas/', tp_contas, name='tipo_contas'),
+    path('tipo-conta-new/', tp_conta_new, name='tipo_conta_new'),
+    path('criar-tp-conta/', criar_tp_conta, name='criar_tp_conta'),
     path('deletar-tp-conta/<str:idtipoconta>', deletar_tp_conta, name='deletar_tp_conta'),
     path('contas/', contas, name='contas'),
     path('contas-v/<str:idconta>', conta_v, name='conta_v'),
