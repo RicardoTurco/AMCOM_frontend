@@ -7,10 +7,6 @@ def index(request):
     return render(request, 'transacoes/index.html', {'user': None})
 
 
-def login(request):
-    return render(request, 'transacoes/login.html')
-
-
 def pessoas(request):
     url_pessoas = os.getenv('URL_API') + 'pessoas'
     response = requests.get(url_pessoas)
