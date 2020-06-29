@@ -27,7 +27,7 @@
                         <td>{{ pessoa.datanascimento }}</td>
                         <td>
                             <a class="btn btn-info" href="{% url 'pessoa_v' pessoa.idpessoa %}">Detalhes</a>
-                            <a class="btn btn-danger" href="#">Delete</a>
+                            <a class="btn btn-danger" href="{% url 'deletar_pessoa' pessoa.idpessoa %}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}

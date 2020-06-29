@@ -44,6 +44,13 @@ def criar_pessoa(request):
     return redirect('pessoas')
 
 
+def deletar_pessoa(request, idpessoa=None):
+    url_pessoa = os.getenv('URL_API') + 'pessoas/id/' + idpessoa
+
+    response_pessoa = requests.delete(url_pessoa)
+    return redirect('pessoas')
+
+
 def tp_contas(request):
     url_tp_contas = os.getenv('URL_API') + 'tipo-contas'
     response = requests.get(url_tp_contas)
