@@ -8,7 +8,7 @@
     <h1 align="center">CLIENTES</h1>
 
     <br>
-    <a class="btn btn-primary" href="#">NOVO CLIENTE</a>
+    <a class="btn btn-primary" href="{% url 'pessoa_new' %}">NOVO CLIENTE</a>
     <br><br>
 
     {% if status_pessoas == 200 %}
@@ -26,6 +26,7 @@
                         <td>{{ pessoa.cpf }}</td>
                         <td>{{ pessoa.datanascimento }}</td>
                         <td>
+                            <a class="btn btn-info" href="{% url 'pessoa_v' pessoa.idpessoa %}">Detalhes</a>
                             <a class="btn btn-danger" href="#">Delete</a>
                         </td>
                     </tr>

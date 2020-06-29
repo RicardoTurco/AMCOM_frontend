@@ -18,6 +18,17 @@ def pessoas(request):
     return render(request, 'transacoes/pessoas.html', {'pessoas': pessoas, 'status_pessoas': response.status_code})
 
 
+def pessoa_v(request, idpessoa=None):
+    url_pessoa = os.getenv('URL_API') + 'pessoas/id/' + idpessoa
+    response_pessoa = requests.get(url_pessoa)
+    pessoa = response_pessoa.json()
+    return render(request, 'transacoes/pessoa_v.html', {'pessoa': pessoa})
+
+
+def pessoa_new(request):
+    return render(request, 'transacoes/pessoa_new.html')
+
+
 def tp_contas(request):
     url_tp_contas = os.getenv('URL_API') + 'tipo-contas'
     response = requests.get(url_tp_contas)
